@@ -30,7 +30,7 @@ def NBP(lst):       #리스트로 변환 Cpu(변수=a), 변환 Mem(변수=b) 값
         List.append(a2)
         
     for i in range(len(lst)):
-        #여기서 입력받은 lst = [[a,b], [a2,b2], [a3],[b3]) 같은 형식
+        #여기서 입력받은 lst = [[a,b], [a2,b2], [a3,b3]] 같은 형식
 
         #CPU, MEM 크기 비교
         List2 = []          #크기 비교 후 산출된 Server 목록 초기값
