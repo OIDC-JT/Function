@@ -2,8 +2,9 @@ import re
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
-def NBP(lst):       #리스트로 변환 Cpu(변수=a), 변환 Mem(변수=b) 값을 받음(ex. lst = [[3,6], [15,35], [8, 12]] )
+def NBP(list):       #리스트로 변환 Cpu(변수=a), 변환 Mem(변수=b) 값을 받음(ex. lst = [[3,6], [15,35], [8, 12]] )
     
+    lst =  [list[i * 2:(i + 1) * 2] for i in range((len(list) - 1 + 2) // 2 )]          #2개 씩 인덱싱
     html = urlopen("https://www.ncloud.com/charge/region/ko")
     bsObj = BeautifulSoup(html, "html.parser")
 
