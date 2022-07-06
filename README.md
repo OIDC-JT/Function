@@ -1,6 +1,7 @@
 # Function
 
 Crawling - 실제 사용할 땐 crawling_return.py 사용
+Agent 자동화 설치 - 실제 사용할 땐 agent_install_bat.py 사용
  
  
 
