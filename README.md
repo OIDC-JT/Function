@@ -6,7 +6,7 @@ Crawling - 실제 사용할 땐 crawling_return.py 사용
 
 Batch 파일을 활용한 Zabbix Monitoring Agent 설치 자동화
 
-- agent 자동화 설치 방법-
+- agent 자동화 설치 방법
 
 vm/cloud server에서 
 
@@ -19,7 +19,7 @@ https://github.com/OIDC-JT/Function/blob/master/agent_install_test.py 이 파일
 'python3 agent_install_test.py' 해서 py 파일 실행 시키고
 
 
-------위 code는 우리 django 서버에서 실행/아래코드는 고객 서버에서 실행--------
+---위 code는 우리 django 서버에서 실행/아래코드는 고객 서버에서 실행---
 
 #1. 서버에서 curl -O(centos), wget(ubuntu) 's3 url' 을 입력하여 bat 파일 다운로드
 
