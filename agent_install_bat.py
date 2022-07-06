@@ -26,7 +26,7 @@ def batch(ID):
 
         s3.upload_file(local_file_path, bucket_name, object_name, ExtraArgs={'ACL':'public-read'})
       
-        if os.path.exist(local_file_path):                              #local에 저장한 file 삭제
+        if os.path.exists(local_file_path):                              #local에 저장한 file 삭제
             os.remove(local_file_path)
 
     #서버에서 agent 설치하는 법(metadata는 id로 설정되있음)
