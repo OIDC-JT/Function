@@ -1,4 +1,4 @@
-#Ubuntu 20.04 version
+#Ubuntu 18.04 version
 import boto3
 import os
 
