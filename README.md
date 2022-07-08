@@ -12,7 +12,7 @@ Batch 파일을 활용한 Zabbix Monitoring Agent 설치 자동화
 
 vm/cloud server에서 
 
-python install 하고
+'yum install python3' 하고
 
 'python3 -m pip install boto3' 한 뒤에
 
