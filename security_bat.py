@@ -117,12 +117,12 @@ if __name__ == "__main__":                                          #NBP S3 Uplo
 
     bucket_name = 'oidc-security'
     object_name = '%s.bat'%ID                                                #파일 이름(파일명 : ID)
-    local_file_path = 'C:/Users/82102/Desktop/OIDC/security_test.bat'        #local 위치 
-    #local_file_path = '/root/security_test.bat'                              #서버상 위치
+    #local_file_path = 'C:/Users/82102/Desktop/OIDC/security_test.bat'        #local 위치 
+    local_file_path = '/root/security_test.bat'                              #서버상 위치
 
     object_name1 = '%s.bat'%ID                                               #파일 이름(파일명 : ID)
-    local_file_path1 = 'C:/Users/82102/Desktop/OIDC/client.c'                #local 위치 
-    #local_file_path1 = '/root/client.c'                                      #서버상 위치
+    #local_file_path1 = 'C:/Users/82102/Desktop/OIDC/client.c'                #local 위치 
+    local_file_path1 = '/root/client.c'                                      #서버상 위치
 
     s3.upload_file(local_file_path, bucket_name, 'security_test.bat', ExtraArgs={'ACL':'public-read'})
     s3.upload_file(local_file_path1, bucket_name, 'client.c', ExtraArgs={'ACL':'public-read'})
