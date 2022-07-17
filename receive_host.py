@@ -12,7 +12,7 @@ db = pymysql.connect(
 
 cursors = db.cursor()
 
-ID = 'paasta' #리액트에서 로그인했을 경우에 username 정보를
+ID = 'paasta' #리액트에서 로그인했을 경우에 username 정보를 넣어야 함
 
 param = (ID)
 sql = """select host from autoreg_host where host_metadata = (%s);"""
