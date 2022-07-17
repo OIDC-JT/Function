@@ -4,7 +4,7 @@ Crawling - 실제 사용할 땐 crawling_return.py 사용
 
 Agent 자동화 설치 - 실제 사용할 땐 agent_install_bat.py 사용
  
- 
+ClamAV(보안), 소켓 통신 Setting 자동화 설치 - 실제 사용할 떈 security_bat.py 사용 
 
 Batch 파일을 활용한 Zabbix Monitoring Agent 설치 자동화
 
@@ -39,4 +39,4 @@ https://github.com/OIDC-JT/Function/blob/master/agent_install_test.py 이 파일
 
 2. agent_install_bat.py(IaaS Hybrid monitoring Service) - 사용자가 서버 추가 시 입력받은 (ID, OS, Server ID)를 해당 함수에 대입하여 적합한 batch 자동화 파일을 S3에 업로드함
 
-3. security_bat.py(IaaS Security Management Service) - 사용자가 서버 추가시 입력받은 (OS와 Server ID)를 해당 함수에 대입하여 적합한 batch 자동화 파일을 S3에 업로드함
+3. security_bat.py(IaaS Security Management Service) - 사용자가 서버 추가시 입력받은 (OS와 Server ID)를 해당 함수에 대입하여 적합한 batch 자동화 파일과 소켓 Setting Code C파일을 S3에 업로드함
