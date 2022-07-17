@@ -26,7 +26,7 @@ systemctl status clam-freshclam
 systemctl status clamd@scan 
 echo "#!/bin/sh" >> /usr/local/bin/clamscan.sh 
 echo "SDATE=$(date "+%%Y-%%m-%%d %%H:%%M:%%S")" >> /usr/local/bin/clamscan.sh 
-echo "echo $'\n\nStart Date :' $SDATE >> /root/text.txt" >> /usr/local/bin/clamscan.sh 
-echo "clamscan -ri / >> /root/text.txt" >> /usr/local/bin/clamscan.sh 
+echo "echo $'\n\nStart Date :' $SDATE > /root/text.txt" >> /usr/local/bin/clamscan.sh 
+echo "clamscan -r /root >> /root/text.txt" >> /usr/local/bin/clamscan.sh 
 chmod 755 /usr/local/bin/clamscan.sh 
 cat <(crontab -l) <(echo "00 04 * * * /usr/local/bin/clamscan.sh") | crontab -
