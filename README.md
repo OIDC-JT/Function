@@ -28,7 +28,7 @@ py 파일을 실행 시키고(ex.'python3 agent_install_test.py')
 
 #2. chmod 755 'bat file명' -->bat file 권한을 access 할 수 있게 변경
 
-#3. ./'file명'으로 실행(agent 설치&설정)
+#3. ./'file명'으로 실행(agent 설치&설정) (보안 서비스는 'gcc client.c -o client' 명령어 실행 후 ./file 명령)
 
 하면 vm/cloud server에 agent 설치 및 설정이 완료되서 passta로 바로 모니터링 가능
 
