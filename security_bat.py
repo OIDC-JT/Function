@@ -22,19 +22,17 @@ cfile_socket = """/* client.c */
 #include <sys/types.h>
 #include <netinet/in.h>
 
+#define IP "175.45.194.207		//Django Server IP
+#define POST 51					//Django Server Port
+
 void error_handling(char *message);
-int main(int argc, char* argv[]){
+int main(){							//서버측 IP랑 Port를 입력받음-추후 수정(IP, port 고정하는 방식으로)
 
 	int serv_sock, fd;
     	int str_len, len;
 	struct sockaddr_in serv_addr;
 	char message[30], buf[BUFSIZ];
     	FILE* file = NULL;
-    
-	if(argc!=3){
-		printf(\"Usage : %%s <IP> <PORT> \n\", argv[0]);
-		exit(1);
-	}
 
 	serv_sock = socket(PF_INET, SOCK_STREAM, 0);
     
@@ -43,8 +41,8 @@ int main(int argc, char* argv[]){
         
 	memset(&serv_addr, 0, sizeof(serv_addr));
 	serv_addr.sin_family=AF_INET;
-	serv_addr.sin_addr.s_addr=inet_addr(argv[1]);
-	serv_addr.sin_port=htons(atoi(argv[2]));
+	serv_addr.sin_addr.s_addr=inet_addr(IP);			//서버측 IP(argv[1])
+	serv_addr.sin_port=htons(PORT);				//서버측 Port(argv[2])
     
 	if(connect(serv_sock, (struct sockaddr*)&serv_addr, sizeof(serv_addr))==-1) 
 		error_handling("connect() error!");
@@ -94,7 +92,7 @@ void error_handling(char *message){
 	fputs(message, stderr);
 	fputc(\'\n\', stderr);
 	exit(1);
-}"""%ID
+}"""%(ID,ID)
 
 
 Centos ='#!/bin/bash \nsetsebool -P antivirus_can_scan_system 1 \nyum install -y epel-release \nyum install -y clamav-server clamav-data clamav-update clamav-filesystem clamav clamav-scanner-systemd clamav-devel clamav-lib clamav-server-systemd \ncp /usr/share/doc/clamd.conf /etc/clamd.d/ \nsed -i -e \"s/^Example/#Example/\" /etc/clamd.d/clamd.conf \nsed -i -e \"s/^Example/#Example/\" /etc/clamd.d/scan.conf \nsed -i -e \"s/^Example/#Example/\" /etc/freshclam.conf \nfreshclam \necho \"[Unit]\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"Description = freshclam scanner\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"After = network.target\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"[Service]\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"Type = forking\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"ExecStart = /usr/bin/freshclam -d -c 4\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"Restart = on-failure\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"PrivateTmp = true\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"RestartSec = 20sec\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"[Install]\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"WantedBy=multi-user.target\" >> /usr/lib/systemd/system/clam-freshclam.service \nsystemctl enable clam-freshclam \nsystemctl enable clamd@scan \nsystemctl start clam-freshclam \nsystemctl start clamd@scan \nsystemctl status clam-freshclam \nsystemctl status clamd@scan \necho \"#!/bin/sh\" >> /usr/local/bin/clamscan.sh \necho "SDATE=$(date \"+%%Y-%%m-%%d %%H:%%M:%%S\")\" >> /usr/local/bin/clamscan.sh \necho \"echo $\'\n\nStart Date :\' $SDATE >> /root/%s.txt\" >> /usr/local/bin/clamscan.sh \necho \"clamscan -ri / >> /root/%s.txt\" >> /usr/local/bin/clamscan.sh \nchmod 755 /usr/local/bin/clamscan.sh \ncat <(crontab -l) <<(echo \"00 01 * * * /usr/local/bin/clamscan.sh\") | crontab - \ngcc client.c -o client \ncat <(crontab -l) <<(echo \"15 01 * * * /root/client 175.45.194.207 5241\") | crontab -'%(ID, ID)
@@ -127,9 +125,9 @@ if __name__ == "__main__":                                          #NBP S3 Uplo
     s3.upload_file(local_file_path, bucket_name, 'security_test.bat', ExtraArgs={'ACL':'public-read'})
     s3.upload_file(local_file_path1, bucket_name, 'client.c', ExtraArgs={'ACL':'public-read'})
       
-    if os.path.exists(local_file_path1):                               #local에 저장한 file 삭제
+    if os.path.exists(local_file_path1):                                #local에 저장한 file 삭제
         os.remove(local_file_path1)
 
-    if os.path.exists(local_file_path):                              #local에 저장한 file 삭제
+    if os.path.exists(local_file_path):                              	#local에 저장한 file 삭제
         os.remove(local_file_path)
     
