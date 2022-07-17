@@ -7,8 +7,7 @@ region_name = 'kr-standard'
 access_key = 'm5bIyITDeH0kEW8K3sZ4'
 secret_key = 'LS6N46NhCZmxOqbbsIDi42gQdbc1Lzk24qIyk12x'
 
-def Security_batch(ID, OS, ServerID):
-    #ID = 'jaechan'
+def Security_batch(OS, ServerID):
     #OS = 'Centos'
     #ServerID = "server1"
 
