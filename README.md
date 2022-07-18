@@ -6,6 +6,8 @@ Agent 자동화 설치 - 실제 사용할 땐 agent_install_bat.py 사용
  
 ClamAV(보안), Socket 통신 Setting 자동화 설치 - 실제 사용할 떈 security_bat.py 사용 
 
+
+
 Batch 파일을 활용한 Zabbix Monitoring Agent 설치 자동화
 
 
@@ -28,7 +30,7 @@ py 파일을 실행 시키고(ex.'python3 agent_install_test.py')
 
 #2. chmod 755 'bat file명' -->bat file 권한을 access 할 수 있게 변경
 
-#3. ./'file명'으로 실행(agent 설치&설정) (보안 서비스는 'gcc client.c -o client' 명령어 실행 후 ./file 명령)
+#3. ./'file명'으로 실행(agent 설치&설정) (보안 서비스는 'gcc client.c -o client' 명령어 실행 후 ./file 명령 - 백단에서 실행하려면 ./file &)
 
 하면 vm/cloud server에 agent 설치 및 설정이 완료되서 passta로 바로 모니터링 가능
 
