@@ -1,7 +1,7 @@
 # Function
 
 ## 1. Repo에 대한 설명
-### 이 Reop에는 정통 팀에서 제공하는 서비스들에 대해 꼭 필요한 기능들을 개발한 Code들이 있다.
+##### 이 Reop에는 정통 팀에서 제공하는 서비스들에 대해 꼭 필요한 기능들을 개발한 Code들이 있다.
 ### Code들은 주로 Python으로 개발되었으며, Python 외에도 C, Shell 언어 등이 사용되었다.
 ### 제공하는 기능으로는 '사용자의 요구에 적합한 Cloud 서버 환경 분석', '분석한 Cloud 서버에 대해 CSP에서 제공하는 서버 정보 실시간 Crawling', 'Zabbix Database 자동화', 'IasS 모니터링을 위한 Agent 자동화 설치', 'IasS 보안 검사 설치 자동화', '바이러스 검사 결과 실시간 송수신(소켓)' 등이 있다.
 ### 이 Repo에서 개발한 기능들을 Django 기반의 "NBP_back" Repo와 "OIDC_FRONT" Repo와 연동하여 사용한다.
