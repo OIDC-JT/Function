@@ -7,9 +7,14 @@ region_name = 'kr-standard'
 access_key = 'm5bIyITDeH0kEW8K3sZ4'
 secret_key = 'LS6N46NhCZmxOqbbsIDi42gQdbc1Lzk24qIyk12x'
 
+
 def Security_batch(OS, ServerID):
     #OS = 'Centos'
     #ServerID = "server1"
+    
+    object_name = ServerID+'_test.bat'                                        #파일 이름
+    object_name1 = ServerID+'_clnt.c'                                         #파일 이름
+
 
     cfile_socket = """/* client.c */
 
@@ -54,7 +59,7 @@ def Security_batch(OS, ServerID):
 
             if(str_len==-1)
                     error_handling("read() error!");
-            printf("Message from server: %%s \n", message);
+            printf("Message from server: %%s \\n", message);
 
             // jpg
             size_t fsize, nsize = 0;
@@ -88,21 +93,21 @@ def Security_batch(OS, ServerID):
 
     void error_handling(char *message){
             fputs(message, stderr);
-            fputc('\n', stderr);
+            fputc('\\n', stderr);
             exit(1);
     }"""%(ServerID, ServerID)
 
 
-    Centos ='#!/bin/bash \nsetsebool -P antivirus_can_scan_system 1 \nyum install -y epel-release \nyum install -y clamav-server clamav-data clamav-update clamav-filesystem clamav clamav-scanner-systemd clamav-devel clamav-lib clamav-server-systemd \ncp /usr/share/doc/clamd.conf /etc/clamd.d/ \nsed -i -e \"s/^Example/#Example/\" /etc/clamd.d/clamd.conf \nsed -i -e \"s/^Example/#Example/\" /etc/clamd.d/scan.conf \nsed -i -e \"s/^Example/#Example/\" /etc/freshclam.conf \nfreshclam \necho \"[Unit]\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"Description = freshclam scanner\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"After = network.target\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"[Service]\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"Type = forking\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"ExecStart = /usr/bin/freshclam -d -c 4\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"Restart = on-failure\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"PrivateTmp = true\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"RestartSec = 20sec\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"[Install]\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"WantedBy=multi-user.target\" >> /usr/lib/systemd/system/clam-freshclam.service \nsystemctl enable clam-freshclam \nsystemctl enable clamd@scan \nsystemctl start clam-freshclam \nsystemctl start clamd@scan \nsystemctl status clam-freshclam \nsystemctl status clamd@scan \necho \"#!/bin/sh\" >> /usr/local/bin/clamscan.sh \necho "SDATE=$(date \"+%%%%Y-%%%%m-%%%%d %%%%H:%%%%M:%%%%S\")\" > /usr/local/bin/clamscan.sh \necho \"echo $\'\n\nStart Date :\' $SDATE > /root/%s.txt\" >> /usr/local/bin/clamscan.sh \necho \"clamscan -r /root >> /root/%s.txt\" >> /usr/local/bin/clamscan.sh \nchmod 755 /usr/local/bin/clamscan.sh \ncat <(crontab -l) <<(echo \"00 01 * * * /usr/local/bin/clamscan.sh\") | crontab - \ngcc client.c -o client \ncat <(crontab -l) <<(echo \"15 01 * * * /root/client 175.45.194.207 5241\") | crontab -'%(ServerID, ServerID)
+    Centos ='#!/bin/bash \nsetsebool -P antivirus_can_scan_system 1 \nyum install -y epel-release \nyum install -y clamav-server clamav-data clamav-update clamav-filesystem clamav clamav-scanner-systemd clamav-devel clamav-lib clamav-server-systemd \ncp /usr/share/doc/clamd.conf /etc/clamd.d/ \nsed -i -e \"s/^Example/#Example/\" /etc/clamd.d/clamd.conf \nsed -i -e \"s/^Example/#Example/\" /etc/clamd.d/scan.conf \nsed -i -e \"s/^Example/#Example/\" /etc/freshclam.conf \nfreshclam \necho \"[Unit]\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"Description = freshclam scanner\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"After = network.target\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"[Service]\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"Type = forking\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"ExecStart = /usr/bin/freshclam -d -c 4\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"Restart = on-failure\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"PrivateTmp = true\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"RestartSec = 20sec\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"[Install]\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"WantedBy=multi-user.target\" >> /usr/lib/systemd/system/clam-freshclam.service \nsystemctl enable clam-freshclam \nsystemctl enable clamd@scan \nsystemctl start clam-freshclam \nsystemctl start clamd@scan \nsystemctl status clam-freshclam \nsystemctl status clamd@scan \necho \"#!/bin/sh\" >> /usr/local/bin/clamscan.sh \necho "SDATE=$(date \"+%%%%Y-%%%%m-%%%%d %%%%H:%%%%M:%%%%S\")\" > /usr/local/bin/clamscan.sh \necho \"echo $\'\n\nStart Date :\' $SDATE > /root/%s.txt\" >> /usr/local/bin/clamscan.sh \necho \"clamscan -r /root >> /root/%s.txt\" >> /usr/local/bin/clamscan.sh \nchmod 755 /usr/local/bin/clamscan.sh \ncat <(crontab -l) <(echo \"00 00 * * * /usr/local/bin/clamscan.sh\") | crontab - \ngcc %s_clnt.c -o %s_clnt \ncat <(crontab -l) <(echo \"10 00 * * * /root/%s_clnt\") | crontab -'%(ServerID, ServerID, ServerID, ServerID, ServerID)
 
     if OS =='Centos':
         OS = Centos
 
-    f = open('security_test.bat','w')
+    f = open(object_name,'w')
     f.write(OS)
     f.close
 
-    f = open('client.c', 'w')
+    f = open(object_name1, 'w')
     f.write(cfile_socket)
     f.close()
 
@@ -112,13 +117,14 @@ def Security_batch(OS, ServerID):
                             aws_secret_access_key=secret_key)
 
         bucket_name = 'oidc-security'
-        object_name = 'security_test.bat'                                        #파일 이름
-        #local_file_path = 'C:/Users/82102/Desktop/OIDC/security_test.bat'        #local 위치 
-        local_file_path = '/root/security_test.bat'                              #서버상 위치
 
-        object_name1 = 'client.c'                                                #파일 이름
-        #local_file_path1 = 'C:/Users/82102/Desktop/OIDC/client.c'                #local 위치 
-        local_file_path1 = '/root/client.c'                                      #서버상 위치
+        #object_name = ServerID+'_test.bat'                                        #파일 이름
+        #local_file_path = 'C:/Users/82102/Desktop/OIDC/security_test.bat'        #local 위치 
+        local_file_path = '/root/'+object_name                              #서버상 위치
+
+        #object_name1 = ServerID+'_clnt.c'                                                #파일 이름
+        #local_file_path1 = 'C:/Users/82102/Desktop/OIDC/security_clnt.c'                #local 위치 
+        local_file_path1 = '/root/'+object_name1                                      #서버상 위치
 
         s3.upload_file(local_file_path, bucket_name, object_name, ExtraArgs={'ACL':'public-read'})
         s3.upload_file(local_file_path1, bucket_name, object_name1, ExtraArgs={'ACL':'public-read'})
