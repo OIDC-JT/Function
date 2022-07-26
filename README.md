@@ -30,11 +30,13 @@ py 파일을 실행 시키고(ex.'python3 agent_install_test.py')
 
 #2. chmod 755 'bat file명' -->bat file 권한을 access 할 수 있게 변경
 
-#3. ./'file명'으로 실행(agent 설치&설정) (보안 서비스는 'gcc client.c -o client' 명령어 실행 후 ./file 명령 - 백단에서 실행하려면 ./file &)
+#3. ./'file명.bat'으로 실행(agent 설치&설정)
 
 하면 vm/cloud server에 agent 설치 및 설정이 완료되서 passta로 바로 모니터링 가능
 
-+보안 실시간 점검(매일 00시 00분)이 가능하며 점검 결과를 Django Server로 소켓 전송 함
++보안 실시간 점검(매일 00시 00분)이 가능하며 점검 결과를 Django Server로 (매일 00시 10분에)소켓 전송 함
+
+(백그라운드에서 'nohup,  ./file &' 기능 사용-터미널이 꺼져도 언제든 수신할 수 있게)
 
 -----------------------------------------------------------------------------------
 
