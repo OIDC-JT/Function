@@ -8,12 +8,14 @@ access_key = 'm5bIyITDeH0kEW8K3sZ4'
 secret_key = 'LS6N46NhCZmxOqbbsIDi42gQdbc1Lzk24qIyk12x'
 
 
-def Security_batch(OS, ServerID):
+def Security_batch(ID, OS, ServerID):
+    #ID = 'jaechan'
     #OS = 'Centos'
     #ServerID = "server1"
     
-    object_name = ServerID+'_test.bat'                                        #파일 이름
-    object_name1 = ServerID+'_clnt.c'                                         #파일 이름
+    Txtfile_name = ID + '_' + ServerID
+    object_name = Txtfile_name+'_test.bat'                                        #파일 이름
+    object_name1 = Txtfile_name+'_clnt.c'                                         #파일 이름
 
 
     cfile_socket = """/* client.c */
@@ -95,10 +97,10 @@ def Security_batch(OS, ServerID):
             fputs(message, stderr);
             fputc('\\n', stderr);
             exit(1);
-    }"""%(ServerID, ServerID)
+    }"""%(Txtfile_name, Txtfile_name)
 
 
-    Centos ='#!/bin/bash \nsetsebool -P antivirus_can_scan_system 1 \nyum install -y epel-release \nyum install -y clamav-server clamav-data clamav-update clamav-filesystem clamav clamav-scanner-systemd clamav-devel clamav-lib clamav-server-systemd \ncp /usr/share/doc/clamd.conf /etc/clamd.d/ \nsed -i -e \"s/^Example/#Example/\" /etc/clamd.d/clamd.conf \nsed -i -e \"s/^Example/#Example/\" /etc/clamd.d/scan.conf \nsed -i -e \"s/^Example/#Example/\" /etc/freshclam.conf \nfreshclam \necho \"[Unit]\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"Description = freshclam scanner\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"After = network.target\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"[Service]\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"Type = forking\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"ExecStart = /usr/bin/freshclam -d -c 4\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"Restart = on-failure\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"PrivateTmp = true\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"RestartSec = 20sec\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"[Install]\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"WantedBy=multi-user.target\" >> /usr/lib/systemd/system/clam-freshclam.service \nsystemctl enable clam-freshclam \nsystemctl enable clamd@scan \nsystemctl start clam-freshclam \nsystemctl start clamd@scan \nsystemctl status clam-freshclam \nsystemctl status clamd@scan \necho \"#!/bin/sh\" >> /usr/local/bin/clamscan.sh \necho "SDATE=$(date \"+%%%%Y-%%%%m-%%%%d %%%%H:%%%%M:%%%%S\")\" > /usr/local/bin/clamscan.sh \necho \"echo $\'\n\nStart Date :\' $SDATE > /root/%s.txt\" >> /usr/local/bin/clamscan.sh \necho \"clamscan -r /root >> /root/%s.txt\" >> /usr/local/bin/clamscan.sh \nchmod 755 /usr/local/bin/clamscan.sh \ncat <(crontab -l) <(echo \"00 00 * * * /usr/local/bin/clamscan.sh\") | crontab - \ngcc %s_clnt.c -o %s_clnt \ncat <(crontab -l) <(echo \"10 00 * * * /root/%s_clnt\") | crontab -'%(ServerID, ServerID, ServerID, ServerID, ServerID)
+    Centos ='#!/bin/bash \nsetsebool -P antivirus_can_scan_system 1 \nyum install -y epel-release \nyum install -y clamav-server clamav-data clamav-update clamav-filesystem clamav clamav-scanner-systemd clamav-devel clamav-lib clamav-server-systemd \ncp /usr/share/doc/clamd.conf /etc/clamd.d/ \nsed -i -e \"s/^Example/#Example/\" /etc/clamd.d/clamd.conf \nsed -i -e \"s/^Example/#Example/\" /etc/clamd.d/scan.conf \nsed -i -e \"s/^Example/#Example/\" /etc/freshclam.conf \nfreshclam \necho \"[Unit]\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"Description = freshclam scanner\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"After = network.target\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"[Service]\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"Type = forking\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"ExecStart = /usr/bin/freshclam -d -c 4\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"Restart = on-failure\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"PrivateTmp = true\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"RestartSec = 20sec\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"[Install]\" >> /usr/lib/systemd/system/clam-freshclam.service \necho \"WantedBy=multi-user.target\" >> /usr/lib/systemd/system/clam-freshclam.service \nsystemctl enable clam-freshclam \nsystemctl enable clamd@scan \nsystemctl start clam-freshclam \nsystemctl start clamd@scan \nsystemctl status clam-freshclam \nsystemctl status clamd@scan \necho \"#!/bin/sh\" >> /usr/local/bin/clamscan.sh \necho "SDATE=$(date \"+%%%%Y-%%%%m-%%%%d %%%%H:%%%%M:%%%%S\")\" > /usr/local/bin/clamscan.sh \necho \"echo $\'\n\nStart Date :\' $SDATE > /root/%s.txt\" >> /usr/local/bin/clamscan.sh \necho \"clamscan -r /root >> /root/%s.txt\" >> /usr/local/bin/clamscan.sh \nchmod 755 /usr/local/bin/clamscan.sh \ncat <(crontab -l) <(echo \"00 00 * * * /usr/local/bin/clamscan.sh\") | crontab - \ngcc %s_clnt.c -o %s_clnt \ncat <(crontab -l) <(echo \"10 00 * * * /root/%s_clnt\") | crontab -'%(Txtfile_name, Txtfile_name, Txtfile_name, Txtfile_name, Txtfile_name)
 
     if OS =='Centos':
         OS = Centos
