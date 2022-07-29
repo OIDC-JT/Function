@@ -48,3 +48,4 @@ def batch(ID, OS, ServerID):
     #1. 서버에서 curl -O(centos), wget(ubuntu) 's3 url' 을 입력하여 bat 파일 다운로드
     #2. chmod 755 'bat file명' -->bat file 권한을 access 할 수 있게 변경
     #3. ./'file명'으로 실행(agent 설치&설정)
+    

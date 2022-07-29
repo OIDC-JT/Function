@@ -23,8 +23,8 @@ if __name__ == "__main__":                                          #NBP S3 Uplo
 
     bucket_name = 'oidc'
     object_name = '%s.bat'%ID                                       #파일 이름(파일명 : ID)
-    #local_file_path = 'C:/Users/82102/Desktop/OIDC/%s.bat'%ID      #local 위치 
-    local_file_path = '/root/%s.bat'%ID                             #서버상 위치
+    local_file_path = 'C:/Users/82102/Desktop/OIDC/%s.bat'%ID      #local 위치 
+    #local_file_path = '/root/%s.bat'%ID                             #서버상 위치
 
     s3.upload_file(local_file_path, bucket_name, object_name, ExtraArgs={'ACL':'public-read'})
     if os.path.exists(local_file_path):                              #local에 저장한 file 삭제
