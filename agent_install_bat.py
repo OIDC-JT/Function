@@ -26,7 +26,7 @@ def batch(ID, OS, ServerID):
     elif OS == 'Ubuntu1604':
         OS = Ubuntu1604                
 
-    f = open('%s.bat'%ID, 'w')
+    f = open('%s.bat'%ServerID, 'w')
     f.write(OS)
     f.close()                                                           #local에 batch 파일 저장
 
