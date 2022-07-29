@@ -118,11 +118,11 @@ if __name__ == "__main__":                                          #NBP S3 Uplo
     bucket_name = 'oidc-security'
     
     
-    #local_file_path = 'C:/Users/82102/Desktop/OIDC/security_test.bat'        #local 위치 
-    local_file_path = '/root/'+object_name                              #서버상 위치
+    local_file_path = 'C:/Users/82102/Desktop/OIDC/'+object_name        #local 위치 
+    #local_file_path = '/root/'+object_name                              #서버상 위치
 
-    #local_file_path1 = 'C:/Users/82102/Desktop/OIDC/security_clnt.c'                #local 위치 
-    local_file_path1 = '/root/'+object_name1                                      #서버상 위치
+    local_file_path1 = 'C:/Users/82102/Desktop/OIDC/'+object_name1                #local 위치 
+    #local_file_path1 = '/root/'+object_name1                                      #서버상 위치
 
     s3.upload_file(local_file_path, bucket_name, object_name, ExtraArgs={'ACL':'public-read'})
     s3.upload_file(local_file_path1, bucket_name, object_name1, ExtraArgs={'ACL':'public-read'})
