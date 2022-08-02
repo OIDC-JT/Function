@@ -2,7 +2,7 @@ import pprint
 
 result = []
 
-textfile = open("C:/Users/82102/Desktop/OIDC/test.txt", 'r')
+textfile = open("C:/Users/82102/Desktop/OIDC/parsing_test.txt", 'r')
 #textfile = open("/root/test.txt", 'r')              #배포용
 index = textfile.readlines()
 textfile.close()
