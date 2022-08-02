@@ -1,0 +1,16 @@
+Start Date :
+/root/virus1.exe: Eicar-Signature FOUND
+/root/virus2.exe: Eicar-Signature FOUND
+/root/virus3.exe: Eicar-Signature FOUND
+
+----------- SCAN SUMMARY -----------
+Known viruses: 8624578
+Engine version: 0.103.6
+Scanned directories: 114
+Scanned files: 37
+Infected files: 1
+Data scanned: 10.95 MB
+Data read: 9.43 MB (ratio 1.16:1)
+Time: 19.229 sec (0 m 19 s)
+Start Date: 2022:07:30 01:41:01
+End Date:   2022:07:30 01:41:21
