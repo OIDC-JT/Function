@@ -31,7 +31,7 @@ def Security_batch(ID, OS, ServerID):
     #include <netinet/in.h>
 
     #define IP "175.45.194.207"		//Django Server IP
-    #define PORT 51					//Django Server Port
+    #define PORT 10051					//Django Server Port
 
     void error_handling(char *message);
     int main(){
