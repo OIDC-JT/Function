@@ -13,7 +13,8 @@ def NBP(lst):
     List = []               #크롤링한 정보
     
     for child in bs.find("tbody").children:
-        a1 = str(child).replace('Standard-g2','').replace('High CPU-g2','').replace('High Memory-g2','').replace('<tr><th rowspan="5">', '').replace('<td rowspan="5">일반 데이터베이스 서버<br/>개인 홈페이지 운영</td>','').replace('<td rowspan="5">과학적 모델링<br/>게임 서버</td>','').replace('<td rowspan="5">고성능 데이터베이스 서버<br/>대규모 게임 서비스</td>','').replace('<tr><td>','').replace('</td></tr>','').replace(',','').replace('</td><td>', ', ').replace('</th><td>','').replace('원','W')
+        #a1 = str(child).replace('Standard-g2','').replace('High CPU-g2','').replace('High Memory-g2','').replace('<tr><th rowspan="5">', '').replace('<td rowspan="5">일반 데이터베이스 서버<br/>개인 홈페이지 운영</td>','').replace('<td rowspan="5">과학적 모델링<br/>게임 서버</td>','').replace('<td rowspan="5">고성능 데이터베이스 서버<br/>대규모 게임 서비스</td>','').replace('<tr><td>','').replace('</td></tr>','').replace(',','').replace('</td><td>', ', ').replace('</th><td>','').replace('원','W')
+        a1 = str(child).replace('Standard-g2','').replace('High CPU-g2','').replace('High Memory-g2','').replace('</td><td data-v-978526a4="" rowspan="5">일반 데이터베이스 서버<br data-v-978526a4=""/>개인 홈페이지 운영','').replace('</td><td data-v-978526a4="" rowspan="5">과학적 모델링<br data-v-978526a4=""/>게임 서버','').replace('</td><td data-v-978526a4="" rowspan="5">고성능 데이터베이스 서버<br data-v-978526a4=""/>대규모 게임 서비스','').replace('</td></tr>','').replace(',','').replace('원','W').replace('<tr data-v-978526a4=""><th data-v-978526a4="" rowspan="5"></th><td data-v-978526a4="">','').replace('<tr data-v-978526a4=""><td data-v-978526a4="">','').replace('</td><td data-v-978526a4="">',',')
 
         a2 = a1.split(',')
         
