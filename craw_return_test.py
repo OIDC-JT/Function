@@ -13,7 +13,8 @@ best = []
 best_server=[]                  #적합한 server 정보 초기값
 
 for child in bsObj.find("tbody").children:
-    a1 = str(child).replace('Standard-g2','').replace('High CPU-g2','').replace('High Memory-g2','').replace('<tr><th rowspan="5">', '').replace('<td rowspan="5">일반 데이터베이스 서버<br/>개인 홈페이지 운영</td>','').replace('<td rowspan="5">과학적 모델링<br/>게임 서버</td>','').replace('<td rowspan="5">고성능 데이터베이스 서버<br/>대규모 게임 서비스</td>','').replace('<tr><td>','').replace('</td></tr>','').replace(',','').replace('</td><td>', ', ').replace('</th><td>','').replace('원','W')
+    #a1 = str(child).replace('Standard-g2','').replace('High CPU-g2','').replace('High Memory-g2','').replace('<tr><th rowspan="5">', '').replace('<td rowspan="5">일반 데이터베이스 서버<br/>개인 홈페이지 운영</td>','').replace('<td rowspan="5">과학적 모델링<br/>게임 서버</td>','').replace('<td rowspan="5">고성능 데이터베이스 서버<br/>대규모 게임 서비스</td>','').replace('<tr><td>','').replace('</td></tr>','').replace(',','').replace('</td><td>', ', ').replace('</th><td>','').replace('원','W')
+    a1 = str(child).replace('Standard-g2','').replace('High CPU-g2','').replace('High Memory-g2','').replace('</td><td data-v-978526a4="" rowspan="5">일반 데이터베이스 서버<br data-v-978526a4=""/>개인 홈페이지 운영','').replace('</td><td data-v-978526a4="" rowspan="5">과학적 모델링<br data-v-978526a4=""/>게임 서버','').replace('</td><td data-v-978526a4="" rowspan="5">고성능 데이터베이스 서버<br data-v-978526a4=""/>대규모 게임 서비스','').replace('</td></tr>','').replace(',','').replace('원','W').replace('<tr data-v-978526a4=""><th data-v-978526a4="" rowspan="5"></th><td data-v-978526a4="">','').replace('<tr data-v-978526a4=""><td data-v-978526a4="">','').replace('</td><td data-v-978526a4="">',',')
 
     a2 = a1.split(',')
         
@@ -27,7 +28,6 @@ for child in bsObj.find("tbody").children:
         break
 
     index += 1
-
     List.append(a2)
         
 lst = [[3,6], [15,35], [8, 12]]         #예시 Input List
@@ -42,7 +42,7 @@ for i in range(len(lst)):
     #b=9                #test를 위해 임의로 지정한 함수 입력 값(mem)
 
     for i in range(len(List)):
-        if a < int(List[i][1]) and b < int(List[i][2]):
+        if a <= int(List[i][1]) and b <= int(List[i][2]):
             List2.append(List[i])
 
     #가장 저렴한 price를 가진 server 찾기

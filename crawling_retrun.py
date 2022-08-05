@@ -42,7 +42,7 @@ def NBP(list):       #리스트로 변환 Cpu(변수=a), 변환 Mem(변수=b) �
         b = lst[i][1]      #입력받은 리스트 변수 지정
 
         for i in range(len(List)):                                  #받은 CPU, MEM 값보다 큰값만 추출
-            if a < int(List[i][1]) and b < int(List[i][2]):
+            if a <= int(List[i][1]) and b <= int(List[i][2]):
                 List2.append(List[i])
 
         c=100000000000000             #초기값
