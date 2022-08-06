@@ -1,0 +1,79 @@
+1. Install Zabbix repository
+# rpm -Uvh https://repo.zabbix.com/zabbix/5.0/rhel/7/x86_64/zabbix-release-5.0-1.el7.noarch.rpm
+
+2. Install Zabbix Server
+# yum install zabbix-server-mysql -y
+
+3. Install Zabbix fronted
+# yum install centos-release-scl -y
+
+#vi /etc/yum.repos.d/zabbix.repo
+--------------------------------------------------
+[zabbix-frontend]
+...
+enabled=1
+...
+--------------------------------------------------
+
+# yum install zabbix-web-mysql-scl zabbix-apache-conf-scl -y
+
+4. Database installation and setup
+# wget https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
+
+# sudo rpm -ivh mysql57-community-release-el7-11.noarch.rpm
+
+# sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+
+# sudo yum install mysql-server
+
+# sudo systemctl start mysqld
+
+# grep 'password' /var/log/mysqld.log(현재 암호 확인)
+
+# sudo mysql_secure_installation
+(비밀번호 새롭게 설정 후 다 y 입력 : D2d4d913**24)
+
+# mysql -u root -p
+(D2d4d913**24)
+
+mysql> create database zabbix character set utf8 collate utf8_bin;
+mysql> create user zabbix identified by 'D2d4d913**24';
+mysql> create user zabbix@localhost identified by 'D2d4d913**24';
+mysql> grant all privileges on zabbix.* to zabbix;
+mysql> grant all privileges on zabbix.* to zabbix@localhost;
+mysql> commit;
+mysql> FLUSH PRIVILEGES;
+mysql> quit;
+
+# cp /usr/share/doc/zabbix-server-mysql*/create.sql.gz /root 
+
+# gunzip create.sql.gz (압축해제) 
+
+# mysql -u zabbix -p zabbix < create.sql (Zabbix 초기 db 세팅)
+
+5. Configure the database for Zabbix Server
+# vi /etc/zabbix/zabbix_server.conf
+세부정보 수정
+----------------------------------------------------
+ListenPort=10051
+SourceIP=Zabbixserver IP
+DBHost=DB IP
+DBName=Db 이름
+DBUser=DB user 이름
+DBPassword=DB PW
+DBPort=3306
+DebugLevel=0
+StatsAllowedIP=0.0.0.0/0
+----------------------------------------------
+
+6. Configure PHP for Zabbix frontend
+# vi /etc/opt/rh/rh-php72/php-fpm.d/zabbix.conf
+----------------------------------------------------
+php_value[date.timezone] = Asia/Seoul
+----------------------------------------------
+
+7. Start Zabbix server processes
+
+# systemctl restart zabbix-server httpd rh-php72-php-fpm
+
+# systemctl enable zabbix-server httpd rh-php72-php-fpm
