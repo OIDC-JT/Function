@@ -19,11 +19,11 @@ def batch(ID, OS, ServerID):
         OS = Centos7
     elif OS == 'Centos6':
         OS = Centos6
-    elif OS == 'Ubuntu2004':
+    elif OS == 'Ubuntu20.04':
         OS = Ubuntu2004   
-    elif OS == 'Ubuntu1804':
+    elif OS == 'Ubuntu18.04':
         OS = Ubuntu1804  
-    elif OS == 'Ubuntu1604':
+    elif OS == 'Ubuntu16.04':
         OS = Ubuntu1604                
 
     f = open('%s.bat'%ServerID, 'w')
