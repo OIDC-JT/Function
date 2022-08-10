@@ -3,7 +3,7 @@
 ### 1. Repo에 대한 설명
   - 이 Repo에는 정통 팀에서 제공하는 서비스들에 대해 꼭 필요한 기능들을 개발한 Code들이 있다.
   - Code들은 주로 Python으로 개발되었으며, Python 외에도 C, Shell 언어 등이 사용되었다.
-  - 이 Repo에서 개발한 기능들을 Django 기반의 "NBP_back" Repo와 "OIDC_FRONT" Repo와 연동하여 사용한다.
+  - 이 Repo에서 개발한 기능들을 Django 기반의 "NBP_back_pub" Repo와 "OIDC_FRONT_BP" Repo와 연동하여 사용한다.
 
 ### 2. 서비스 별 기능 설명
   (1) Server Migration Helper Service
@@ -32,7 +32,7 @@
 
 vm/cloud server에 agent 설치 및 설정이 완료되서 passta로 바로 모니터링 가능
 
-+보안 실시간 점검(매일 00시 00분)이 가능하며 점검 결과를 Django Server로 (매일 00시 10분에)소켓 전송 함
++보안 실시간 점검(매일 00시 00분)이 가능하며 점검 결과를 Django Server로 소켓 전송 함
 
 (백그라운드에서 'nohup,  ./file &' 기능 사용-터미널이 꺼져도 언제든 수신할 수 있게)
 
