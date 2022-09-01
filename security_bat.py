@@ -4,8 +4,8 @@ import os
 service_name = 's3'
 endpoint_url = 'https://kr.object.ncloudstorage.com'
 region_name = 'kr-standard'
-access_key = 'm5bIyITDeH0kEW8K3sZ4'
-secret_key = 'LS6N46NhCZmxOqbbsIDi42gQdbc1Lzk24qIyk12x'
+access_key = ''
+secret_key = ''
 
 
 def Security_batch(ID, OS, ServerID):
